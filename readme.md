@@ -19,7 +19,7 @@ This is a simple app written in python which allows you to browse reddit from in
 ###### subreddit.py
 - Just below the modules, you'll see the `image_viewing_command` variable. Replace the command here with the respective command of whatever image viewer you use. Note that the name of the file to open is `temp.jpg`.
     - If you don't want to mess around with that, make sure you have `feh` installed to view those files
-    - You can look up the respective command for your image viewer, here's the one for **Gwenview**: `gwenview temp.jpg`
+    - You can look up the command for your image viewer, here's the one for **Gwenview**: `gwenview temp.jpg`
 
 ### Usage 
 - cd into the directory where this project is located.
