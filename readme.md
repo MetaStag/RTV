@@ -4,11 +4,11 @@ This is a simple app written in python which allows you to browse reddit from in
 
 ---
 ### Requirements
-Python
-Praw module (Reddit API wrapper) 
+- Python
+- Praw module (Reddit API wrapper) 
     - use `pip install praw` to install it
-Reddit account (obviously lol)
-Reddit app - to use the api
+- Reddit account (obviously lol)
+- Reddit app - to use the api
     - follow this video to learn how to make an app -> (https://www.youtube.com/watch?v=NRgfgtzIhBQ)
 
 ### Setup
