@@ -63,7 +63,7 @@ while True:
               f'CAKE DAY      |  {cake_day}\n'
               f'TOTAL KARMA   |  {total_karma} (Roughly)\n'
               f'Post Karma    |  {post_karma}\n'
-              f'COMMENT KARMA | {comment_karma}\n\n'
+              f'COMMENT KARMA |  {comment_karma}\n\n'
                'SUBSCRIBED SUBREDDITS:')
         for i in subreddits:
             print(f'[{subreddits.index(i)+1}] {i.display_name}')
