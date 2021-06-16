@@ -4,6 +4,7 @@ from prawcore import NotFound
 from subreddit import sub # Subreddit mode
 from os import system # To clear the screen
 from datetime import datetime # To convert unix time to human-readable time
+import platform # For os-dependent screen clear command
 
 # MAKING A REDDIT INSTANCE
 reddit = praw.Reddit(client_id = '',
@@ -11,6 +12,12 @@ reddit = praw.Reddit(client_id = '',
                      username = '',
                      password = '',
                      user_agent = '')
+
+# Command to clear screen
+if platform.system() == 'Windows':
+    clear_command = 'cls'
+else:
+    clear_command = 'clear'
 
 # FUNCTIONS
 def sub_exists(sub): # Check if a subreddit exists
@@ -22,7 +29,7 @@ def sub_exists(sub): # Check if a subreddit exists
     return exists
 
 def clear(): # Clear the Screen
-    system('clear')
+    system(clear_command)
     print('Reddit Terminal Viewer (RTV)')
     print('********')
     print('COMMANDS')

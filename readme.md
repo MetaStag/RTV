@@ -16,10 +16,7 @@ This is a simple app written in python which allows you to browse reddit from in
 ###### rtv.py
 - Open `rtv.py` using whichever text editor you prefer, and you'll see the reddit instance variable (just beneath the modules section), fill in your respective `client_id, client_secret, username, password and user_agent`.
 
-###### subreddit.py
-- Just below the modules, you'll see the `image_viewing_command` variable. Replace the command here with the respective command of whatever image viewer you use. Note that the name of the file to open is `temp.jpg`.
-    - If you don't want to mess around with that, make sure you have `feh` installed to view those files
-    - You can look up the command for your image viewer, here's the one for **Gwenview**: `gwenview temp.jpg`
+The program will also create a temporary file, `temp.jpg` in the same folder whenever you view an image. The program does try to detect which image viewer to use automatically based on the os, but if you want to write a custom command, feel free to do so, in `image_viewing_command`.
 
 ### Usage 
 - cd into the directory where this project is located.
@@ -27,7 +24,6 @@ This is a simple app written in python which allows you to browse reddit from in
 
 **Tip** As you have noticed, the process to launch this program is a bit tedious. What i would recommend is setting up an alias, here's an example:
 ```bash
-# Tested on bash and fish
 alias reddit='cd /path/to/project ; python rtv.py ; cd'
 ```
 

@@ -3,13 +3,23 @@
 import mimetypes # To check if url is image or not
 import requests # To download images
 from os import system # To clear the screen and call feh
+import platform # For os-dependent image viewing commands
 
-# REPLACE THIS WITH YOUR COMMAND
-image_viewing_command = 'feh temp.jpg'
+clear_command = 'clear'
+# Replace this with your command to open images
+if platform.system() == 'Darwin':
+    image_viewing_command = 'open temp.jpg'
+elif platform.system() == 'Linux':
+    image_viewing_command = 'xdg-open temp.jpg'
+elif platform.system() == 'Windows':
+    image_viewing_command = 'start temp.jpg'
+    clear_command = 'cls'
+else:
+    image_viewing_command = ''
 
 
 def sub_clear(subreddit): # Clear the Screen
-    system('clear')
+    system(clear_command)
     print(f'Welcome to r/{subreddit}!')
     print('********')
     print('COMMANDS')
@@ -69,7 +79,6 @@ def sub(subreddit, subreddits):
             if sorting not in ['hot', 'new', 'top']:
                 print('Invalid sorting method...')
                 continue
-            viewed_images = False
 
             for post in getattr(subreddit, sorting)(limit=5):
                 print(f'Title -> {post.title} | Score -> {post.score} | By -> u/{post.author} | URL -> ( https://www/reddit.com{post.permalink} )\n')
@@ -80,7 +89,6 @@ def sub(subreddit, subreddits):
                 else: # If post is image
                     file_type = mimetypes.guess_type(post.url)[0]
                     if file_type in ['image/png', 'image/jpg', 'image/jpeg']:
-                        viewed_images = True
                         response = requests.get(post.url, stream=True) # Download Image
                         with open('temp.jpg', 'wb') as file: # Save to external file temporarily
                             for chunk in response.iter_content(chunk_size=1024):
@@ -90,8 +98,6 @@ def sub(subreddit, subreddits):
                         input('File is neither an image nor text, press enter to skip...')
                         continue
                 submission(post) # Send post to submission()
-            if viewed_images: # Remove temp files if seen any images
-                system('rm temp.jpg')
 
         elif choice == 's': # Subscribe
             choice = input(f'Are you sure you want to subscribe to r/{subreddit} (Y/N): ')
@@ -124,6 +130,11 @@ def sub(subreddit, subreddits):
         elif choice == 'clear': # Clear Screen
             sub_clear(subreddit)
         elif choice == 'q' or choice == 'exit': # Exit subreddit mode
+            if platform.system == 'Windows':
+                if path.exists('temp.jpg'):
+                    system('del temp.jpg')
+            else:
+                system('rm -f temp.jpg')
             return
         else:
             print('Invalid Command...')
