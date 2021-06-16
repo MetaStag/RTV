@@ -33,12 +33,12 @@ def sub_clear(subreddit): # Clear the Screen
 
 def submission(post): # Work with posts
     while True:
-        choice = input('(N)ext | (U)pvote | (D)ownvote | (C)omment | (S)ave: ')
+        choice = input('(N)ext | (U)pvote | (D)ownvote | (C)omment | (S)ave | (Q)uit: ')
         choice = choice.lower()
         
         try:
             if choice == '' or choice == 'n' or choice == 'next': # Next post
-                break
+                return True
             elif choice == 'u' or choice == 'upvote': # Upvote
                 post.upvote()
             elif choice == 'd' or choice == 'downvote': # Downvote
@@ -53,11 +53,13 @@ def submission(post): # Work with posts
                     continue
             elif choice == 's' or choice == 'save': # Save
                 post.save()
+            elif choice == 'q' or choice == 'exit': # Quit
+                return False
             else:
                 print('Invalid Command...')
         except ValueError:
             print("There's some network issue, try again later...")
-            break
+            return True
 
 
 def sub(subreddit, subreddits):
@@ -97,7 +99,9 @@ def sub(subreddit, subreddits):
                     else:
                         input('File is neither an image nor text, press enter to skip...')
                         continue
-                submission(post) # Send post to submission()
+                continue_posts = submission(post) # Send post to submission()
+                if not continue_posts:
+                    break
 
         elif choice == 's': # Subscribe
             choice = input(f'Are you sure you want to subscribe to r/{subreddit} (Y/N): ')
