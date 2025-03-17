@@ -1,3 +1,5 @@
+**[As of March 2025, this project is officially archived, as it has been unmaintained for years, there's no guarantee it will work anymore, proceed at your own risk]**
+
 # RTV (Reddit Terminal Viewer)
 
 This is a simple app written in python which allows you to browse reddit from inside the terminal!
